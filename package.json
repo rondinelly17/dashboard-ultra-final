@@ -1,0 +1,11 @@
+{
+  "name": "dashboard-ultra",
+  "version": "1.0.0",
+  "description": "Sistema de Segurança Cybersecurity Dashboard",
+  "scripts": {
+    "build": "echo 'Build completo - HTML estático'"
+  },
+  "keywords": ["security", "dashboard", "cybersecurity"],
+  "author": "rondinelly17",
+  "license": "MIT"
+}
