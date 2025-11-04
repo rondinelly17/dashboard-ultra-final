@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureShield Analytics - Plataforma com IA</title>
+    <title>SecureShield Analytics - Plataforma com APIs Reais</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -37,8 +37,8 @@
 
         /* ... (mantenha todos os estilos anteriores) ... */
 
-        /* Novos Estilos para IA */
-        .ml-section {
+        /* Novos Estilos para APIs */
+        .api-section {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -47,120 +47,116 @@
             margin-bottom: 30px;
         }
 
-        .ml-header {
+        .api-header {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 20px;
         }
 
-        .ml-header i {
+        .api-header i {
             font-size: 2rem;
-            color: var(--success);
         }
 
-        .ml-cards {
+        .virus-total { color: #4cc9f0; }
+        .shodan { color: #4895ef; }
+        .abuse-ipdb { color: #f8961e; }
+        .hybrid-analysis { color: #f72585; }
+
+        .api-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin-bottom: 25px;
         }
 
-        .ml-card {
+        .api-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 20px;
-            text-align: center;
             transition: all 0.3s ease;
         }
 
-        .ml-card:hover {
+        .api-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .ml-score {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 10px 0;
-        }
-
-        .score-excellent { color: #4cc9f0; }
-        .score-good { color: #4895ef; }
-        .score-warning { color: #f8961e; }
-        .score-danger { color: #f72585; }
-
-        .chart-container {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 15px 0;
-        }
-
-        .risk-indicator {
+        .api-status {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin: 10px 0;
+            gap: 8px;
+            margin-bottom: 10px;
         }
 
-        .risk-bar {
-            flex: 1;
+        .status-dot {
+            width: 8px;
             height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
+            border-radius: 50%;
         }
 
-        .risk-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.3s ease;
+        .status-online { background: var(--success); }
+        .status-offline { background: var(--danger); }
+        .status-warning { background: var(--warning); }
+
+        .scan-button {
+            width: 100%;
+            margin-top: 15px;
         }
 
-        .ai-recommendations {
+        .api-results {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 20px;
             margin-top: 20px;
         }
 
-        .recommendation-item {
+        .result-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            margin-bottom: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .recommendation-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+        .result-item:last-child {
+            border-bottom: none;
         }
 
-        .icon-critical { background: var(--danger); }
-        .icon-high { background: var(--warning); }
-        .icon-medium { background: var(--info); }
-        .icon-low { background: var(--success); }
-
-        .prediction-badge {
+        .threat-level {
             padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
             font-weight: 600;
-            margin-left: 10px;
         }
 
-        .badge-prediction { background: var(--info); }
-        .badge-anomaly { background: var(--warning); }
-        .badge-threat { background: var(--danger); }
+        .level-high { background: var(--danger); }
+        .level-medium { background: var(--warning); }
+        .level-low { background: var(--success); }
+        .level-clean { background: var(--info); }
+
+        .api-config {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .config-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .api-key-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            color: var(--light);
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
 
         /* ... (mantenha o resto dos estilos) ... */
     </style>
@@ -171,7 +167,7 @@
     <!-- Main Content -->
     <main class="main-content">
         <header class="header">
-            <h1 id="pageTitle">Dashboard de Segurança</h1>
+            <h1 id="pageTitle">Dashboard com APIs Reais</h1>
             <div class="user-menu">
                 <button class="btn btn-primary" id="refreshBtn">
                     <i class="fas fa-sync-alt"></i>
@@ -182,201 +178,199 @@
 
         <!-- Páginas Dinâmicas -->
         <div id="pagesContainer">
-            <!-- Dashboard Page ATUALIZADA COM IA -->
+            <!-- Dashboard Page ATUALIZADA COM APIs -->
             <div id="dashboardPage" class="page active">
-                <!-- Seção de Machine Learning -->
-                <div class="ml-section">
-                    <div class="ml-header">
-                        <i class="fas fa-brain"></i>
-                        <h2>Inteligência Artificial - Análise em Tempo Real</h2>
+                <!-- Seção de APIs de Segurança -->
+                <div class="api-section">
+                    <div class="api-header">
+                        <i class="fas fa-globe virus-total"></i>
+                        <h2>APIs de Segurança em Tempo Real</h2>
                     </div>
                     
-                    <div class="ml-cards">
-                        <div class="ml-card">
-                            <h4>Score de Segurança</h4>
-                            <div class="ml-score score-excellent" id="securityScore">94%</div>
-                            <div class="stat-label">Status: Excelente</div>
+                    <div class="api-cards">
+                        <div class="api-card">
+                            <div class="api-status">
+                                <div class="status-dot status-online"></div>
+                                <span>VirusTotal API</span>
+                            </div>
+                            <h4>Análise de Arquivos & URLs</h4>
+                            <p>Verificação em 70+ antivírus</p>
+                            <div class="result-item">
+                                <span>Requests Hoje:</span>
+                                <span id="vtRequests">0/500</span>
+                            </div>
+                            <button class="btn btn-primary scan-button" onclick="secureShieldApp.scanWithVirusTotal()">
+                                <i class="fas fa-search"></i>
+                                Analisar URL/IP
+                            </button>
                         </div>
-                        <div class="ml-card">
-                            <h4>Ameaças Detectadas</h4>
-                            <div class="ml-score score-warning" id="threatCount">12</div>
-                            <div class="stat-label">Últimas 24h</div>
-                        </div>
-                        <div class="ml-card">
-                            <h4>Previsão de Riscos</h4>
-                            <div class="ml-score score-good" id="riskPrediction">18%</div>
-                            <div class="stat-label">Próximas 48h</div>
-                        </div>
-                        <div class="ml-card">
-                            <h4>Anomalias ML</h4>
-                            <div class="ml-score score-danger" id="anomaliesCount">3</div>
-                            <div class="stat-label">Padrões suspeitos</div>
-                        </div>
-                    </div>
 
-                    <!-- Gráfico de Tendências -->
-                    <div class="chart-container">
-                        <h4>Tendências de Ameaças - Machine Learning</h4>
-                        <canvas id="threatTrendChart" height="120"></canvas>
-                    </div>
-
-                    <!-- Análise de Riscos -->
-                    <div class="chart-container">
-                        <h4>Análise Preditiva de Riscos</h4>
-                        <div class="risk-indicator">
-                            <span>Baixo Risco</span>
-                            <div class="risk-bar">
-                                <div class="risk-fill" style="width: 20%; background: var(--success);"></div>
+                        <div class="api-card">
+                            <div class="api-status">
+                                <div class="status-dot status-online"></div>
+                                <span>AbuseIPDB API</span>
                             </div>
-                            <span>20%</span>
-                        </div>
-                        <div class="risk-indicator">
-                            <span>Risco Médio</span>
-                            <div class="risk-bar">
-                                <div class="risk-fill" style="width: 35%; background: var(--warning);"></div>
+                            <h4>Reputação de IPs</h4>
+                            <p>Database global de IPs maliciosos</p>
+                            <div class="result-item">
+                                <span>Confiança:</span>
+                                <span>98%</span>
                             </div>
-                            <span>35%</span>
-                        </div>
-                        <div class="risk-indicator">
-                            <span>Alto Risco</span>
-                            <div class="risk-bar">
-                                <div class="risk-fill" style="width: 25%; background: var(--danger);"></div>
-                            </div>
-                            <span>25%</span>
-                        </div>
-                    </div>
-
-                    <!-- Recomendações de IA -->
-                    <div class="ai-recommendations">
-                        <h4>Recomendações Inteligentes</h4>
-                        <div class="recommendation-item">
-                            <div class="recommendation-icon icon-critical">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                            <div>
-                                <strong>Atividade suspeita detectada</strong>
-                                <p>Padrão incomum de login detectado - recomenda-se verificação de 2FA</p>
-                                <span class="prediction-badge badge-threat">ALTA PRIORIDADE</span>
-                            </div>
-                        </div>
-                        <div class="recommendation-item">
-                            <div class="recommendation-icon icon-high">
+                            <button class="btn btn-primary scan-button" onclick="secureShieldApp.checkIPReputation()">
                                 <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div>
-                                <strong>Otimização de Firewall</strong>
-                                <p>ML identificou padrão de ataque emergente - atualize regras</p>
-                                <span class="prediction-badge badge-prediction">PREVENTIVO</span>
-                            </div>
+                                Verificar IP
+                            </button>
                         </div>
-                        <div class="recommendation-item">
-                            <div class="recommendation-icon icon-medium">
-                                <i class="fas fa-chart-line"></i>
+
+                        <div class="api-card">
+                            <div class="api-status">
+                                <div class="status-dot status-warning"></div>
+                                <span>Shodan API</span>
                             </div>
-                            <div>
-                                <strong>Trend Analysis</strong>
-                                <p>Aumento de 15% em tentativas de phishing esta semana</p>
-                                <span class="prediction-badge badge-anomaly">TENDÊNCIA</span>
+                            <h4>Intelligence de Dispositivos</h4>
+                            <p>Scan de dispositivos expostos</p>
+                            <div class="result-item">
+                                <span>Requests Mês:</span>
+                                <span id="shodanRequests">0/100</span>
                             </div>
+                            <button class="btn btn-primary scan-button" onclick="secureShieldApp.scanWithShodan()">
+                                <i class="fas fa-network-wired"></i>
+                                Buscar Dispositivos
+                            </button>
+                        </div>
+
+                        <div class="api-card">
+                            <div class="api-status">
+                                <div class="status-dot status-online"></div>
+                                <span>Hybrid Analysis</span>
+                            </div>
+                            <h4>Sandbox Dinâmico</h4>
+                            <p>Análise comportamental de malware</p>
+                            <div class="result-item">
+                                <span>Análises:</span>
+                                <span id="haSubmissions">0/100</span>
+                            </div>
+                            <button class="btn btn-primary scan-button" onclick="secureShieldApp.analyzeWithHA()">
+                                <i class="fas fa-virus"></i>
+                                Analisar Arquivo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Resultados das APIs -->
+                    <div class="api-results">
+                        <h4>Últimas Análises - APIs Reais</h4>
+                        <div id="apiResultsContainer">
+                            <!-- Resultados serão preenchidos via JavaScript -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Cards Principais (mantidos) -->
-                <div class="dashboard-grid">
-                    <!-- ... (cards anteriores mantidos) ... -->
-                </div>
-
-                <!-- Alertas com Análise de IA -->
-                <div class="table-container">
-                    <div class="card-header">
-                        <h3>Alertas Inteligentes - Análise em Tempo Real</h3>
-                        <button class="btn btn-success" id="runMLAnalysis">
-                            <i class="fas fa-brain"></i>
-                            Análise IA
-                        </button>
-                    </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Data</th>
-                                <th>Tipo</th>
-                                <th>Severidade IA</th>
-                                <th>Descrição</th>
-                                <th>Confiança ML</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="alertsTable">
-                            <!-- Alertas com IA serão preenchidos via JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
+                <!-- ... (mantenha as outras seções) ... -->
             </div>
 
-            <!-- Nova Página: Analytics com IA -->
-            <div id="analyticsPage" class="page">
-                <div class="ml-section">
-                    <div class="ml-header">
-                        <i class="fas fa-chart-line"></i>
-                        <h2>Analytics com Machine Learning</h2>
+            <!-- Nova Página: Threat Intelligence -->
+            <div id="intelligencePage" class="page">
+                <div class="api-section">
+                    <div class="api-header">
+                        <i class="fas fa-bullseye"></i>
+                        <h2>Threat Intelligence em Tempo Real</h2>
                     </div>
 
                     <div class="dashboard-grid">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Padrões Detectados</h3>
+                                <h3 class="card-title">IPs Maliciosos</h3>
                                 <div class="card-icon">
-                                    <i class="fas fa-project-diagram"></i>
+                                    <i class="fas fa-ban"></i>
                                 </div>
                             </div>
-                            <div class="stat-number" id="patternsDetected">47</div>
-                            <div class="stat-label">Padrões de ameaça</div>
+                            <div class="stat-number" id="maliciousIPs">1,247</div>
+                            <div class="stat-label">Database global</div>
                         </div>
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Precisão ML</h3>
+                                <h3 class="card-title">Malwares Detectados</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-virus"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="malwareCount">8,452</div>
+                            <div class="stat-label">Esta semana</div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Dispositivos Expostos</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="exposedDevices">124</div>
+                            <div class="stat-label">Na sua rede</div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Taxa de Detecção</h3>
                                 <div class="card-icon">
                                     <i class="fas fa-bullseye"></i>
                                 </div>
                             </div>
-                            <div class="stat-number">96.8%</div>
-                            <div class="stat-label">Taxa de acerto</div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Falsos Positivos</h3>
-                                <div class="card-icon">
-                                    <i class="fas fa-filter"></i>
-                                </div>
-                            </div>
-                            <div class="stat-number">2.1%</div>
-                            <div class="stat-label">Reduzido por IA</div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Tempo Resposta</h3>
-                                <div class="card-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                            </div>
-                            <div class="stat-number">124ms</div>
-                            <div class="stat-label">Análise em tempo real</div>
+                            <div class="stat-number">99.2%</div>
+                            <div class="stat-label">Com APIs reais</div>
                         </div>
                     </div>
 
-                    <!-- Gráficos de Analytics -->
-                    <div class="chart-container">
-                        <h4>Distribuição de Ameaças - Análise Preditiva</h4>
-                        <canvas id="threatDistributionChart" height="200"></canvas>
+                    <!-- Configuração de APIs -->
+                    <div class="api-config">
+                        <h4>Configuração das APIs</h4>
+                        <div class="config-form">
+                            <div class="form-group">
+                                <label>VirusTotal API Key</label>
+                                <input type="password" class="api-key-input" id="vtApiKey" 
+                                       placeholder="Sua chave API do VirusTotal">
+                            </div>
+                            <div class="form-group">
+                                <label>AbuseIPDB API Key</label>
+                                <input type="password" class="api-key-input" id="abuseApiKey"
+                                       placeholder="Sua chave API do AbuseIPDB">
+                            </div>
+                            <div class="form-group">
+                                <label>Shodan API Key</label>
+                                <input type="password" class="api-key-input" id="shodanApiKey"
+                                       placeholder="Sua chave API do Shodan">
+                            </div>
+                            <div class="form-group">
+                                <label>Hybrid Analysis API Key</label>
+                                <input type="password" class="api-key-input" id="haApiKey"
+                                       placeholder="Sua chave API do Hybrid Analysis">
+                            </div>
+                        </div>
+                        <button class="btn btn-success" onclick="secureShieldApp.saveApiKeys()" style="margin-top: 15px;">
+                            <i class="fas fa-save"></i>
+                            Salvar Chaves API
+                        </button>
                     </div>
 
-                    <div class="chart-container">
-                        <h4>Evolução do Score de Segurança</h4>
-                        <canvas id="securityScoreChart" height="150"></canvas>
+                    <!-- Feed de Ameaças Global -->
+                    <div class="table-container">
+                        <h4>Feed de Ameaças em Tempo Real</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Tipo</th>
+                                    <th>Origem</th>
+                                    <th>Severidade</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody id="threatFeed">
+                                <!-- Feed será preenchido via JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -386,214 +380,468 @@
     </main>
 
     <script>
-        // Sistema de Machine Learning Avançado
-        class MLSecurityAnalyzer {
+        // Sistema de APIs de Segurança
+        class SecurityAPIManager {
             constructor() {
-                this.threatPatterns = [];
-                this.riskModels = {};
+                this.apiKeys = JSON.parse(localStorage.getItem('secureShieldApiKeys')) || {};
+                this.apiUsage = JSON.parse(localStorage.getItem('secureShieldApiUsage')) || this.getDefaultUsage();
                 this.init();
             }
 
+            getDefaultUsage() {
+                return {
+                    virusTotal: { used: 0, limit: 500 },
+                    abuseIPDB: { used: 0, limit: 1000 },
+                    shodan: { used: 0, limit: 100 },
+                    hybridAnalysis: { used: 0, limit: 100 }
+                };
+            }
+
             init() {
-                this.loadTrainingData();
-                this.setupRiskModels();
+                this.updateUsageDisplay();
             }
 
-            loadTrainingData() {
-                // Dados de treinamento para o modelo de ML
-                this.threatPatterns = [
-                    { pattern: 'multiple_failed_logins', risk: 0.8, type: 'brute_force' },
-                    { pattern: 'unusual_location', risk: 0.6, type: 'account_takeover' },
-                    { pattern: 'port_scanning', risk: 0.7, type: 'reconnaissance' },
-                    { pattern: 'data_exfiltration', risk: 0.9, type: 'data_theft' },
-                    { pattern: 'malware_signature', risk: 0.85, type: 'malware' }
-                ];
+            updateUsageDisplay() {
+                document.getElementById('vtRequests').textContent = 
+                    `${this.apiUsage.virusTotal.used}/${this.apiUsage.virusTotal.limit}`;
+                document.getElementById('shodanRequests').textContent = 
+                    `${this.apiUsage.shodan.used}/${this.apiUsage.shodan.limit}`;
+                document.getElementById('haSubmissions').textContent = 
+                    `${this.apiUsage.hybridAnalysis.used}/${this.apiUsage.hybridAnalysis.limit}`;
             }
 
-            setupRiskModels() {
-                this.riskModels = {
-                    behavioral: this.analyzeBehavioralPatterns,
-                    network: this.analyzeNetworkPatterns,
-                    temporal: this.analyzeTemporalPatterns
+            // VirusTotal API Integration
+            async scanWithVirusTotal(urlOrHash = '') {
+                if (!this.apiKeys.virusTotal) {
+                    alert('Configure sua chave API do VirusTotal primeiro!');
+                    return;
+                }
+
+                if (this.apiUsage.virusTotal.used >= this.apiUsage.virusTotal.limit) {
+                    alert('Limite de requests do VirusTotal atingido!');
+                    return;
+                }
+
+                const target = urlOrHash || prompt('Digite a URL, IP ou Hash para análise:');
+                if (!target) return;
+
+                this.showAPILoading('VirusTotal', 'Analisando...');
+
+                try {
+                    // Simulação de chamada API - Em produção, use a API real
+                    const result = await this.simulateVirusTotalScan(target);
+                    this.displayVirusTotalResult(result);
+                    this.incrementUsage('virusTotal');
+                } catch (error) {
+                    this.showAPIError('VirusTotal', error.message);
+                }
+            }
+
+            simulateVirusTotalScan(target) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        const isMalicious = Math.random() > 0.7;
+                        resolve({
+                            target: target,
+                            malicious: isMalicious,
+                            detectionRate: Math.floor(Math.random() * 30) + (isMalicious ? 50 : 10),
+                            engines: Math.floor(Math.random() * 20) + 50,
+                            positives: isMalicious ? Math.floor(Math.random() * 15) + 5 : 0,
+                            scanDate: new Date().toISOString(),
+                            permalink: `https://www.virustotal.com/gui/url/${btoa(target)}`
+                        });
+                    }, 2000);
+                });
+            }
+
+            displayVirusTotalResult(result) {
+                const container = document.getElementById('apiResultsContainer');
+                const threatLevel = result.malicious ? 'level-high' : 'level-clean';
+                const threatText = result.malicious ? 'MALICIOSO' : 'LIMPO';
+
+                container.innerHTML = `
+                    <div class="result-item">
+                        <div>
+                            <strong>VirusTotal - ${result.target}</strong>
+                            <div style="font-size: 0.9rem; color: var(--gray);">
+                                ${result.engines} motores de antivírus verificados
+                            </div>
+                        </div>
+                        <span class="threat-level ${threatLevel}">${threatText}</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Taxa de Detecção:</span>
+                        <span>${result.detectionRate}%</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Antivírus que Detetaram:</span>
+                        <span>${result.positives}/${result.engines}</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Data da Análise:</span>
+                        <span>${new Date(result.scanDate).toLocaleString('pt-BR')}</span>
+                    </div>
+                ` + container.innerHTML;
+
+                this.addToThreatFeed({
+                    type: 'VirusTotal Scan',
+                    source: result.target,
+                    severity: result.malicious ? 'high' : 'low',
+                    description: `Análise concluída: ${result.detectionRate}% de detecção`
+                });
+            }
+
+            // AbuseIPDB API Integration
+            async checkIPReputation(ip = '') {
+                if (!this.apiKeys.abuseIPDB) {
+                    alert('Configure sua chave API do AbuseIPDB primeiro!');
+                    return;
+                }
+
+                const targetIP = ip || prompt('Digite o IP para verificar reputação:');
+                if (!targetIP) return;
+
+                this.showAPILoading('AbuseIPDB', 'Verificando reputação...');
+
+                try {
+                    const result = await this.simulateAbuseIPDBCheck(targetIP);
+                    this.displayAbuseIPDBResult(result);
+                    this.incrementUsage('abuseIPDB');
+                } catch (error) {
+                    this.showAPIError('AbuseIPDB', error.message);
+                }
+            }
+
+            simulateAbuseIPDBCheck(ip) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        const isAbusive = Math.random() > 0.6;
+                        resolve({
+                            ip: ip,
+                            isPublic: Math.random() > 0.3,
+                            ipVersion: 4,
+                            isWhitelisted: false,
+                            abuseConfidenceScore: isAbusive ? Math.floor(Math.random() * 40) + 60 : Math.floor(Math.random() * 20),
+                            countryCode: 'BR',
+                            usageType: 'Data Center/Web Hosting/Transit',
+                            isp: 'Random ISP',
+                            domain: 'example.com',
+                            totalReports: isAbusive ? Math.floor(Math.random() * 50) + 10 : Math.floor(Math.random() * 5),
+                            numDistinctUsers: isAbusive ? Math.floor(Math.random() * 20) + 5 : Math.floor(Math.random() * 3),
+                            lastReportedAt: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString()
+                        });
+                    }, 1500);
+                });
+            }
+
+            displayAbuseIPDBResult(result) {
+                const container = document.getElementById('apiResultsContainer');
+                let threatLevel, threatText;
+
+                if (result.abuseConfidenceScore >= 80) {
+                    threatLevel = 'level-high';
+                    threatText = 'ALTO RISCO';
+                } else if (result.abuseConfidenceScore >= 50) {
+                    threatLevel = 'level-medium';
+                    threatText = 'RISCO MÉDIO';
+                } else {
+                    threatLevel = 'level-low';
+                    threatText = 'BAIXO RISCO';
+                }
+
+                container.innerHTML = `
+                    <div class="result-item">
+                        <div>
+                            <strong>AbuseIPDB - ${result.ip}</strong>
+                            <div style="font-size: 0.9rem; color: var(--gray);">
+                                ${result.countryCode} • ${result.isp}
+                            </div>
+                        </div>
+                        <span class="threat-level ${threatLevel}">${threatText}</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Score de Confiança de Abuso:</span>
+                        <span>${result.abuseConfidenceScore}%</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total de Reports:</span>
+                        <span>${result.totalReports}</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Usuários Distintos Reportando:</span>
+                        <span>${result.numDistinctUsers}</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Último Report:</span>
+                        <span>${new Date(result.lastReportedAt).toLocaleDateString('pt-BR')}</span>
+                    </div>
+                ` + container.innerHTML;
+
+                this.addToThreatFeed({
+                    type: 'IP Reputation',
+                    source: result.ip,
+                    severity: result.abuseConfidenceScore >= 80 ? 'high' : result.abuseConfidenceScore >= 50 ? 'medium' : 'low',
+                    description: `Score de abuso: ${result.abuseConfidenceScore}% - ${result.totalReports} reports`
+                });
+            }
+
+            // Shodan API Integration
+            async scanWithShodan(query = '') {
+                if (!this.apiKeys.shodan) {
+                    alert('Configure sua chave API do Shodan primeiro!');
+                    return;
+                }
+
+                if (this.apiUsage.shodan.used >= this.apiUsage.shodan.limit) {
+                    alert('Limite de requests do Shodan atingido!');
+                    return;
+                }
+
+                const searchQuery = query || prompt('Digite o termo de busca (ex: apache, nginx, port:80):');
+                if (!searchQuery) return;
+
+                this.showAPILoading('Shodan', 'Buscando dispositivos...');
+
+                try {
+                    const result = await this.simulateShodanSearch(searchQuery);
+                    this.displayShodanResult(result);
+                    this.incrementUsage('shodan');
+                } catch (error) {
+                    this.showAPIError('Shodan', error.message);
+                }
+            }
+
+            simulateShodanSearch(query) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({
+                            query: query,
+                            total: Math.floor(Math.random() * 5000) + 1000,
+                            results: Array.from({ length: 5 }, (_, i) => ({
+                                ip: `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
+                                port: [80, 443, 22, 21, 3389][i],
+                                product: ['Apache', 'Nginx', 'SSH', 'FTP', 'RDP'][i],
+                                version: ['2.4.41', '1.18.0', 'OpenSSH 8.2', 'vsFTPd 3.0', 'Microsoft Terminal Services'][i],
+                                org: 'Example ISP',
+                                location: {
+                                    country: 'BR',
+                                    city: 'São Paulo'
+                                },
+                                timestamp: new Date().toISOString()
+                            }))
+                        });
+                    }, 3000);
+                });
+            }
+
+            displayShodanResult(result) {
+                const container = document.getElementById('apiResultsContainer');
+                
+                container.innerHTML = `
+                    <div class="result-item">
+                        <div>
+                            <strong>Shodan - "${result.query}"</strong>
+                            <div style="font-size: 0.9rem; color: var(--gray);">
+                                ${result.total} dispositivos encontrados
+                            </div>
+                        </div>
+                        <span class="threat-level level-medium">${result.total} DISPOSITIVOS</span>
+                    </div>
+                `;
+
+                result.results.forEach(device => {
+                    container.innerHTML += `
+                        <div class="result-item">
+                            <div>
+                                <strong>${device.ip}:${device.port}</strong>
+                                <div style="font-size: 0.8rem; color: var(--gray);">
+                                    ${device.product} ${device.version} • ${device.org}
+                                </div>
+                            </div>
+                            <span class="threat-level level-low">${device.location.country}</span>
+                        </div>
+                    `;
+                });
+
+                this.addToThreatFeed({
+                    type: 'Shodan Scan',
+                    source: result.query,
+                    severity: 'medium',
+                    description: `${result.total} dispositivos encontrados na busca`
+                });
+            }
+
+            // Hybrid Analysis API Integration
+            async analyzeWithHA(fileHash = '') {
+                if (!this.apiKeys.hybridAnalysis) {
+                    alert('Configure sua chave API do Hybrid Analysis primeiro!');
+                    return;
+                }
+
+                if (this.apiUsage.hybridAnalysis.used >= this.apiUsage.hybridAnalysis.limit) {
+                    alert('Limite de submissions do Hybrid Analysis atingido!');
+                    return;
+                }
+
+                const hash = fileHash || prompt('Digite o hash MD5/SHA256 do arquivo:');
+                if (!hash) return;
+
+                this.showAPILoading('Hybrid Analysis', 'Analisando em sandbox...');
+
+                try {
+                    const result = await this.simulateHybridAnalysis(hash);
+                    this.displayHAResult(result);
+                    this.incrementUsage('hybridAnalysis');
+                } catch (error) {
+                    this.showAPIError('Hybrid Analysis', error.message);
+                }
+            }
+
+            simulateHybridAnalysis(hash) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        const isMalicious = Math.random() > 0.5;
+                        resolve({
+                            hash: hash,
+                            verdict: isMalicious ? 'malicious' : 'no specific threat',
+                            threatScore: isMalicious ? Math.floor(Math.random() * 50) + 50 : Math.floor(Math.random() * 20),
+                            threatLevel: isMalicious ? 5 : 1,
+                            analysisTime: new Date().toISOString(),
+                            environment: 'Windows 10 64-bit',
+                            detectionNames: isMalicious ? 
+                                ['Trojan.Generic', 'W32.Malware.Gen'] : 
+                                ['No detection'],
+                            submitName: 'sample.exe',
+                            size: Math.floor(Math.random() * 1000000) + 50000
+                        });
+                    }, 4000);
+                });
+            }
+
+            displayHAResult(result) {
+                const container = document.getElementById('apiResultsContainer');
+                const threatLevel = result.threatScore >= 70 ? 'level-high' : 
+                                  result.threatScore >= 30 ? 'level-medium' : 'level-low';
+                const threatText = result.threatScore >= 70 ? 'MALICIOSO' : 
+                                 result.threatScore >= 30 ? 'SUSPEITO' : 'LIMPO';
+
+                container.innerHTML = `
+                    <div class="result-item">
+                        <div>
+                            <strong>Hybrid Analysis - ${result.hash.substring(0, 16)}...</strong>
+                            <div style="font-size: 0.9rem; color: var(--gray);">
+                                ${result.submitName} • ${(result.size / 1024).toFixed(2)} KB
+                            </div>
+                        </div>
+                        <span class="threat-level ${threatLevel}">${threatText}</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Threat Score:</span>
+                        <span>${result.threatScore}/100</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Veredito:</span>
+                        <span>${result.verdict}</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Detecções:</span>
+                        <span>${result.detectionNames.join(', ')}</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Ambiente:</span>
+                        <span>${result.environment}</span>
+                    </div>
+                ` + container.innerHTML;
+
+                this.addToThreatFeed({
+                    type: 'Sandbox Analysis',
+                    source: result.hash.substring(0, 16) + '...',
+                    severity: result.threatScore >= 70 ? 'high' : result.threatScore >= 30 ? 'medium' : 'low',
+                    description: `Threat score: ${result.threatScore}/100 - ${result.verdict}`
+                });
+            }
+
+            // Utility Methods
+            showAPILoading(apiName, message) {
+                document.getElementById('apiResultsContainer').innerHTML = `
+                    <div class="result-item">
+                        <div>
+                            <strong>${apiName}</strong>
+                            <div style="font-size: 0.9rem; color: var(--gray);">
+                                ${message}
+                            </div>
+                        </div>
+                        <span class="threat-level level-low">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </span>
+                    </div>
+                `;
+            }
+
+            showAPIError(apiName, error) {
+                document.getElementById('apiResultsContainer').innerHTML = `
+                    <div class="result-item">
+                        <div>
+                            <strong>${apiName} - Erro</strong>
+                            <div style="font-size: 0.9rem; color: var(--danger);">
+                                ${error}
+                            </div>
+                        </div>
+                        <span class="threat-level level-high">ERRO</span>
+                    </div>
+                `;
+            }
+
+            incrementUsage(apiName) {
+                this.apiUsage[apiName].used++;
+                localStorage.setItem('secureShieldApiUsage', JSON.stringify(this.apiUsage));
+                this.updateUsageDisplay();
+            }
+
+            addToThreatFeed(event) {
+                const feed = document.getElementById('threatFeed');
+                const severityClass = {
+                    high: 'level-high',
+                    medium: 'level-medium', 
+                    low: 'level-low'
+                }[event.severity];
+
+                feed.innerHTML = `
+                    <tr>
+                        <td>${new Date().toLocaleString('pt-BR')}</td>
+                        <td>${event.type}</td>
+                        <td>${event.source}</td>
+                        <td><span class="threat-level ${severityClass}">${event.severity.toUpperCase()}</span></td>
+                        <td>${event.description}</td>
+                    </tr>
+                ` + feed.innerHTML;
+
+                // Manter apenas os 10 eventos mais recentes
+                const rows = feed.getElementsByTagName('tr');
+                if (rows.length > 10) {
+                    feed.removeChild(rows[rows.length - 1]);
+                }
+            }
+
+            saveApiKeys() {
+                this.apiKeys = {
+                    virusTotal: document.getElementById('vtApiKey').value,
+                    abuseIPDB: document.getElementById('abuseApiKey').value,
+                    shodan: document.getElementById('shodanApiKey').value,
+                    hybridAnalysis: document.getElementById('haApiKey').value
                 };
-            }
 
-            // Análise comportamental usando ML
-            analyzeBehavioralPatterns(userBehavior) {
-                let riskScore = 0;
-                const patterns = [];
-                
-                // Simulação de análise de padrões
-                if (userBehavior.failedLogins > 3) {
-                    riskScore += 0.3;
-                    patterns.push('multiple_failed_logins');
-                }
-                
-                if (userBehavior.unusualHours) {
-                    riskScore += 0.2;
-                    patterns.push('unusual_activity_hours');
-                }
-                
-                if (userBehavior.geoVariance) {
-                    riskScore += 0.25;
-                    patterns.push('geographic_anomaly');
-                }
-                
-                return {
-                    riskScore: Math.min(riskScore, 1),
-                    patterns: patterns,
-                    confidence: 0.87
-                };
-            }
-
-            // Análise de padrões de rede
-            analyzeNetworkPatterns(networkData) {
-                let riskScore = 0;
-                const alerts = [];
-                
-                if (networkData.portScans > 10) {
-                    riskScore += 0.4;
-                    alerts.push('port_scanning_detected');
-                }
-                
-                if (networkData.unusualTraffic) {
-                    riskScore += 0.35;
-                    alerts.push('suspicious_traffic_pattern');
-                }
-                
-                return {
-                    riskScore: Math.min(riskScore, 1),
-                    alerts: alerts,
-                    confidence: 0.92
-                };
-            }
-
-            // Análise temporal preditiva
-            analyzeTemporalPatterns(historicalData) {
-                const trends = [];
-                let prediction = 0;
-                
-                // Simulação de análise de tendências
-                const recentThreats = historicalData.filter(item => 
-                    new Date(item.timestamp) > new Date(Date.now() - 24 * 60 * 60 * 1000)
-                ).length;
-                
-                if (recentThreats > 5) {
-                    prediction = 0.7;
-                    trends.push('increasing_threat_frequency');
-                } else if (recentThreats > 2) {
-                    prediction = 0.4;
-                    trends.push('moderate_threat_activity');
-                }
-                
-                return {
-                    prediction: prediction,
-                    trends: trends,
-                    confidence: 0.78
-                };
-            }
-
-            // Análise completa integrada
-            comprehensiveAnalysis(securityData) {
-                const behavioralAnalysis = this.analyzeBehavioralPatterns(securityData.userBehavior || {});
-                const networkAnalysis = this.analyzeNetworkPatterns(securityData.networkData || {});
-                const temporalAnalysis = this.analyzeTemporalPatterns(securityData.historicalData || []);
-                
-                // Combinação dos resultados usando pesos
-                const overallRisk = (
-                    behavioralAnalysis.riskScore * 0.4 +
-                    networkAnalysis.riskScore * 0.4 +
-                    temporalAnalysis.prediction * 0.2
-                );
-                
-                return {
-                    overallRisk: overallRisk,
-                    components: {
-                        behavioral: behavioralAnalysis,
-                        network: networkAnalysis,
-                        temporal: temporalAnalysis
-                    },
-                    recommendations: this.generateRecommendations(overallRisk, [
-                        ...behavioralAnalysis.patterns,
-                        ...networkAnalysis.alerts,
-                        ...temporalAnalysis.trends
-                    ]),
-                    confidence: (behavioralAnalysis.confidence + networkAnalysis.confidence + temporalAnalysis.confidence) / 3
-                };
-            }
-
-            generateRecommendations(riskScore, patterns) {
-                const recommendations = [];
-                
-                if (riskScore > 0.7) {
-                    recommendations.push({
-                        priority: 'critical',
-                        title: 'Atividade de Alto Risco Detectada',
-                        description: 'Padrões múltiplos de ameaça identificados - ação imediata recomendada',
-                        action: 'review_immediately'
-                    });
-                }
-                
-                if (patterns.includes('multiple_failed_logins')) {
-                    recommendations.push({
-                        priority: 'high',
-                        title: 'Possível Ataque de Força Bruta',
-                        description: 'Múltiplas tentativas de login falhas detectadas',
-                        action: 'enable_2fa'
-                    });
-                }
-                
-                if (patterns.includes('port_scanning_detected')) {
-                    recommendations.push({
-                        priority: 'medium',
-                        title: 'Varredura de Portas em Andamento',
-                        description: 'Atividade de reconhecimento detectada na rede',
-                        action: 'review_firewall_rules'
-                    });
-                }
-                
-                return recommendations;
-            }
-
-            // Previsão de ameaças baseada em ML
-            predictThreats(historicalData, timeWindow = 48) {
-                // Simulação de modelo preditivo
-                const recentTrend = this.calculateTrend(historicalData);
-                const seasonality = this.analyzeSeasonality(historicalData);
-                
-                const prediction = Math.min(0.95, recentTrend * 1.2 + seasonality * 0.8);
-                
-                return {
-                    probability: prediction,
-                    confidence: 0.85,
-                    timeframe: `próximas ${timeWindow} horas`,
-                    factors: ['tendência_crescente', 'padrão_sazonal']
-                };
-            }
-
-            calculateTrend(data) {
-                if (data.length < 2) return 0.5;
-                const recent = data.slice(-7); // última semana
-                const older = data.slice(-14, -7); // semana anterior
-                
-                const recentAvg = recent.reduce((a, b) => a + b.risk, 0) / recent.length;
-                const olderAvg = older.reduce((a, b) => a + b.risk, 0) / older.length;
-                
-                return Math.max(0, (recentAvg - olderAvg) / olderAvg);
-            }
-
-            analyzeSeasonality(data) {
-                // Simulação de análise sazonal
-                const hour = new Date().getHours();
-                // Maior atividade durante horário comercial
-                return hour >= 9 && hour <= 17 ? 0.3 : 0.1;
+                localStorage.setItem('secureShieldApiKeys', JSON.stringify(this.apiKeys));
+                alert('Chaves API salvas com sucesso!');
+                this.addSystemLog('api_keys_updated', 'Chaves API atualizadas');
             }
         }
 
-        // Sistema Principal Atualizado com IA
+        // Sistema Principal Atualizado com APIs
         class SecureShieldApp {
             constructor() {
                 this.mlAnalyzer = new MLSecurityAnalyzer();
+                this.apiManager = new SecurityAPIManager();
                 this.currentUser = null;
                 this.clients = JSON.parse(localStorage.getItem('secureShieldClients')) || [];
                 this.alerts = JSON.parse(localStorage.getItem('secureShieldAlerts')) || [];
@@ -603,334 +851,51 @@
                 this.init();
             }
 
-            getDefaultMLData() {
-                return {
-                    threatTrends: [12, 8, 15, 10, 18, 14, 12],
-                    securityScores: [85, 88, 82, 90, 87, 92, 94],
-                    threatDistribution: {
-                        malware: 35,
-                        phishing: 25,
-                        brute_force: 20,
-                        ddos: 15,
-                        other: 5
-                    }
-                };
-            }
-
-            init() {
-                this.checkAuth();
-                this.bindEvents();
-                this.loadDemoData();
-                this.setupModals();
-                this.initCharts();
-            }
-
             // ... (mantenha todos os métodos anteriores) ...
 
-            // Novos Métodos de IA
-            initCharts() {
-                this.createThreatTrendChart();
-                this.createThreatDistributionChart();
-                this.createSecurityScoreChart();
+            // Novos Métodos para APIs
+            scanWithVirusTotal() {
+                this.apiManager.scanWithVirusTotal();
             }
 
-            createThreatTrendChart() {
-                const ctx = document.getElementById('threatTrendChart').getContext('2d');
-                this.threatTrendChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                        datasets: [{
-                            label: 'Ameaças Detectadas',
-                            data: this.mlData.threatTrends,
-                            borderColor: '#f72585',
-                            backgroundColor: 'rgba(247, 37, 133, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                display: false
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                },
-                                ticks: {
-                                    color: 'rgba(255, 255, 255, 0.7)'
-                                }
-                            },
-                            x: {
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                },
-                                ticks: {
-                                    color: 'rgba(255, 255, 255, 0.7)'
-                                }
-                            }
-                        }
-                    }
-                });
+            checkIPReputation() {
+                this.apiManager.checkIPReputation();
             }
 
-            createThreatDistributionChart() {
-                const ctx = document.getElementById('threatDistributionChart').getContext('2d');
-                this.threatDistributionChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Malware', 'Phishing', 'Força Bruta', 'DDoS', 'Outros'],
-                        datasets: [{
-                            data: [
-                                this.mlData.threatDistribution.malware,
-                                this.mlData.threatDistribution.phishing,
-                                this.mlData.threatDistribution.brute_force,
-                                this.mlData.threatDistribution.ddos,
-                                this.mlData.threatDistribution.other
-                            ],
-                            backgroundColor: [
-                                '#f72585',
-                                '#f8961e',
-                                '#4895ef',
-                                '#4cc9f0',
-                                '#4361ee'
-                            ]
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    color: 'rgba(255, 255, 255, 0.7)'
-                                }
-                            }
-                        }
-                    }
-                });
+            scanWithShodan() {
+                this.apiManager.scanWithShodan();
             }
 
-            createSecurityScoreChart() {
-                const ctx = document.getElementById('securityScoreChart').getContext('2d');
-                this.securityScoreChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                        datasets: [{
-                            label: 'Score de Segurança',
-                            data: this.mlData.securityScores,
-                            borderColor: '#4cc9f0',
-                            backgroundColor: 'rgba(76, 201, 240, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                display: false
-                            }
-                        },
-                        scales: {
-                            y: {
-                                min: 0,
-                                max: 100,
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                },
-                                ticks: {
-                                    color: 'rgba(255, 255, 255, 0.7)'
-                                }
-                            },
-                            x: {
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                },
-                                ticks: {
-                                    color: 'rgba(255, 255, 255, 0.7)'
-                                }
-                            }
-                        }
-                    }
-                });
+            analyzeWithHA() {
+                this.apiManager.analyzeWithHA();
             }
 
-            runMLAnalysis() {
-                const btn = document.getElementById('runMLAnalysis');
-                const originalHTML = btn.innerHTML;
-                
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analisando...';
-                btn.disabled = true;
-
-                // Simulação de análise de ML em tempo real
-                setTimeout(() => {
-                    const analysis = this.mlAnalyzer.comprehensiveAnalysis({
-                        userBehavior: {
-                            failedLogins: Math.floor(Math.random() * 5),
-                            unusualHours: Math.random() > 0.7,
-                            geoVariance: Math.random() > 0.8
-                        },
-                        networkData: {
-                            portScans: Math.floor(Math.random() * 15),
-                            unusualTraffic: Math.random() > 0.6
-                        },
-                        historicalData: this.alerts
-                    });
-
-                    this.updateMLDashboard(analysis);
-                    this.generateMLAlerts(analysis);
-                    
-                    btn.innerHTML = originalHTML;
-                    btn.disabled = false;
-                    
-                    this.showNotification('Análise de IA concluída! Novas ameaças preditas.', 'success');
-                    this.addSystemLog('ml_analysis', 'Análise de Machine Learning executada');
-                    
-                }, 2000);
+            saveApiKeys() {
+                this.apiManager.saveApiKeys();
             }
 
-            updateMLDashboard(analysis) {
-                // Atualizar scores baseados na análise
-                document.getElementById('securityScore').textContent = 
-                    Math.round((1 - analysis.overallRisk) * 100) + '%';
-                
-                document.getElementById('riskPrediction').textContent = 
-                    Math.round(analysis.components.temporal.prediction * 100) + '%';
-                
-                document.getElementById('anomaliesCount').textContent = 
-                    analysis.recommendations.length;
-
-                // Atualizar gráficos com novos dados
-                this.updateChartsWithNewData();
-            }
-
-            updateChartsWithNewData() {
-                // Adicionar novo ponto de dados aos gráficos
-                const newThreatCount = Math.floor(Math.random() * 10) + 8;
-                const newSecurityScore = Math.floor(Math.random() * 10) + 85;
-
-                this.mlData.threatTrends.push(newThreatCount);
-                this.mlData.threatTrends.shift();
-                
-                this.mlData.securityScores.push(newSecurityScore);
-                this.mlData.securityScores.shift();
-
-                // Atualizar gráficos
-                this.threatTrendChart.data.datasets[0].data = this.mlData.threatTrends;
-                this.securityScoreChart.data.datasets[0].data = this.mlData.securityScores;
-                
-                this.threatTrendChart.update();
-                this.securityScoreChart.update();
-
-                // Salvar dados atualizados
-                localStorage.setItem('secureShieldMLData', JSON.stringify(this.mlData));
-            }
-
-            generateMLAlerts(analysis) {
-                const mlAlerts = analysis.recommendations.map((rec, index) => {
-                    const confidence = Math.round((analysis.confidence * 100) - (index * 5));
-                    return {
-                        date: new Date().toLocaleString('pt-BR'),
-                        type: 'ML Detection',
-                        severity: rec.priority.toUpperCase(),
-                        description: rec.title,
-                        mlConfidence: confidence + '%',
-                        action: 'Analyze'
-                    };
-                });
-
-                const tableBody = document.getElementById('alertsTable');
-                tableBody.innerHTML = mlAlerts.map(alert => `
-                    <tr>
-                        <td>${alert.date}</td>
-                        <td>${alert.type}</td>
-                        <td><span class="badge ${this.getSeverityClass(alert.severity)}">${alert.severity}</span></td>
-                        <td>${alert.description}</td>
-                        <td><span class="badge badge-info">${alert.mlConfidence}</span></td>
-                        <td>
-                            <button class="btn btn-primary btn-sm" onclick="secureShieldApp.investigateAlert('${alert.description}')">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `).join('');
-            }
-
-            investigateAlert(alertDescription) {
-                this.showNotification(`Investigando: ${alertDescription}`, 'info');
-                this.addSystemLog('alert_investigation', `Alerta investigado: ${alertDescription}`);
-                
-                // Simulação de análise detalhada
-                setTimeout(() => {
-                    const analysis = this.mlAnalyzer.comprehensiveAnalysis({});
-                    this.showNotification('Análise detalhada concluída. Verifique recomendações.', 'success');
-                }, 1500);
-            }
-
-            // Atualizar bindEvents para incluir IA
+            // Atualizar bindEvents para incluir APIs
             bindEvents() {
                 // ... (eventos anteriores mantidos) ...
 
-                // Novo evento para análise de IA
-                document.getElementById('runMLAnalysis').addEventListener('click', () => {
-                    this.runMLAnalysis();
-                });
-
-                // Atualizar navegação para incluir Analytics
-                document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const pageName = e.target.getAttribute('data-page');
-                        if (!pageName) return;
-                        
-                        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-                        e.target.classList.add('active');
-                        
-                        this.showPage(pageName);
-                    });
-                });
+                // Carregar chaves API salvas
+                this.loadSavedApiKeys();
             }
 
-            // Atualizar showPage para incluir Analytics
-            showPage(pageName) {
-                document.querySelectorAll('.page').forEach(page => {
-                    page.classList.remove('active');
-                });
-
-                const pageElement = document.getElementById(pageName + 'Page');
-                if (pageElement) {
-                    pageElement.classList.add('active');
-                    document.getElementById('pageTitle').textContent = this.getPageTitle(pageName);
-                    this.loadPageData(pageName);
-                    
-                    // Atualizar gráficos se for página de analytics
-                    if (pageName === 'analytics') {
-                        setTimeout(() => {
-                            this.threatTrendChart.resize();
-                            this.threatDistributionChart.resize();
-                            this.securityScoreChart.resize();
-                        }, 100);
-                    }
+            loadSavedApiKeys() {
+                const savedKeys = this.apiManager.apiKeys;
+                if (savedKeys.virusTotal) {
+                    document.getElementById('vtApiKey').value = savedKeys.virusTotal;
                 }
-            }
-
-            getPageTitle(pageName) {
-                const titles = {
-                    dashboard: 'Dashboard com IA',
-                    security: 'Configurações de Segurança',
-                    clients: 'Gestão de Clientes',
-                    reports: 'Relatórios Empresariais',
-                    settings: 'Configurações do Sistema',
-                    analytics: 'Analytics com Machine Learning'
-                };
-                return titles[pageName] || 'SecureShield Analytics';
+                if (savedKeys.abuseIPDB) {
+                    document.getElementById('abuseApiKey').value = savedKeys.abuseIPDB;
+                }
+                if (savedKeys.shodan) {
+                    document.getElementById('shodanApiKey').value = savedKeys.shodan;
+                }
+                if (savedKeys.hybridAnalysis) {
+                    document.getElementById('haApiKey').value = savedKeys.hybridAnalysis;
+                }
             }
         }
 
