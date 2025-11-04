@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Ultra - Sistema de Segurança</title>
+    <title>SecureShield Analytics - Plataforma Empresarial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -32,15 +32,124 @@
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
             color: var(--light);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        .app-container {
+        /* Tela de Login */
+        .login-container {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--light);
+        }
+
+        .login-logo i {
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .login-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .login-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Dashboard */
+        .app-container {
+            display: none;
             min-height: 100vh;
         }
 
-        /* Sidebar */
         .sidebar {
             width: var(--sidebar-width);
             background: rgba(26, 26, 46, 0.95);
@@ -51,7 +160,6 @@
             height: 100vh;
             overflow-y: auto;
             z-index: 1000;
-            transition: all 0.3s ease;
         }
 
         .sidebar-header {
@@ -71,6 +179,19 @@
 
         .logo i {
             color: var(--primary);
+        }
+
+        .user-info {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin: 15px;
+            font-size: 0.9rem;
+        }
+
+        .user-role {
+            color: var(--primary);
+            font-weight: 600;
         }
 
         .nav-links {
@@ -105,12 +226,10 @@
             text-align: center;
         }
 
-        /* Main Content */
         .main-content {
             flex: 1;
             margin-left: var(--sidebar-width);
             padding: 20px;
-            transition: all 0.3s ease;
         }
 
         .header {
@@ -136,30 +255,7 @@
             gap: 15px;
         }
 
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
-        }
-
-        /* Dashboard Grid */
+        /* Cards e Grid */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -220,123 +316,58 @@
             font-size: 0.9rem;
         }
 
-        /* 2FA Section */
-        .twofa-section {
+        /* Tabelas */
+        .table-container {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px;
             margin-bottom: 30px;
         }
 
-        .twofa-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+        .table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .twofa-header i {
-            font-size: 2rem;
+        .table th,
+        .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .table th {
             color: var(--primary);
+            font-weight: 600;
         }
 
-        .twofa-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        .qrcode-container {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-        }
-
-        .qrcode-placeholder {
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--primary);
-        }
-
-        .backup-codes {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        .backup-codes h4 {
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-
-        .codes-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .code-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 6px;
-            text-align: center;
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-
-        /* Security Alerts */
-        .alerts-section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-        }
-
-        .alert-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .alert-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .alert-icon.critical {
-            background: var(--danger);
+        .badge-success {
+            background: var(--success);
             color: white;
         }
 
-        .alert-icon.warning {
+        .badge-warning {
             background: var(--warning);
             color: white;
         }
 
-        .alert-icon.info {
-            background: var(--info);
+        .badge-danger {
+            background: var(--danger);
             color: white;
+        }
+
+        /* Admin Only */
+        .admin-only {
+            display: none;
         }
 
         /* Responsive */
@@ -349,10 +380,6 @@
                 margin-left: 0;
             }
 
-            .twofa-content {
-                grid-template-columns: 1fr;
-            }
-
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
@@ -360,240 +387,530 @@
     </style>
 </head>
 <body>
-    <div class="app-container">
+    <!-- Tela de Login -->
+    <div id="loginPage" class="login-container">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>SecureShield Analytics</span>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" class="form-control" placeholder="Sua senha" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Entrar
+                </button>
+            </form>
+
+            <div class="login-links">
+                <a href="#" id="showRegister">Criar conta</a>
+                <a href="#" id="showAdminDemo">Demo Admin</a>
+                <a href="#" id="showClientDemo">Demo Cliente</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Principal -->
+    <div id="appContainer" class="app-container">
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
                     <i class="fas fa-shield-alt"></i>
-                    <span>Security Ultra</span>
+                    <span>SecureShield</span>
                 </div>
             </div>
+
+            <div class="user-info">
+                <div>Logado como: <span id="currentUserName">Usuário</span></div>
+                <div class="user-role" id="currentUserRole">Cliente</div>
+            </div>
+
             <ul class="nav-links">
-                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-search"></i> Análise de IP</a></li>
-                <li><a href="#"><i class="fas fa-brain"></i> Machine Learning</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
-                <li><a href="#"><i class="fas fa-chart-bar"></i> Analytics</a></li>
-                <li><a href="#"><i class="fas fa-user-shield"></i> Segurança</a></li>
+                <li><a href="#" class="active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#" data-page="security"><i class="fas fa-user-shield"></i> Segurança</a></li>
+                <li class="admin-only"><a href="#" data-page="clients"><i class="fas fa-users"></i> Clientes</a></li>
+                <li class="admin-only"><a href="#" data-page="reports"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                <li><a href="#" data-page="settings"><i class="fas fa-cog"></i> Configurações</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
             </ul>
         </nav>
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Header -->
             <header class="header">
-                <h1>Dashboard de Segurança Ultra</h1>
+                <h1 id="pageTitle">Dashboard de Segurança</h1>
                 <div class="user-menu">
                     <button class="btn btn-primary" id="refreshBtn">
                         <i class="fas fa-sync-alt"></i>
                         Atualizar
                     </button>
-                    <div class="user-avatar">
-                        <i class="fas fa-user-circle fa-2x"></i>
-                    </div>
                 </div>
             </header>
 
-            <!-- Stats Grid -->
-            <div class="dashboard-grid">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Ameaças Detectadas</h3>
-                        <div class="card-icon">
-                            <i class="fas fa-shield-alt"></i>
+            <!-- Páginas Dinâmicas -->
+            <div id="pagesContainer">
+                <!-- Dashboard Page -->
+                <div id="dashboardPage" class="page active">
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Ameaças Detectadas</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="threatCount">12</div>
+                            <div class="stat-label">Últimas 24h</div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">IPs Analisados</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="ipCount">1,247</div>
+                            <div class="stat-label">Total este mês</div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Sistema 2FA</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number">Ativo</div>
+                            <div class="stat-label">Protegido</div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">ML Insights</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Precisão</div>
                         </div>
                     </div>
-                    <div class="stat-number" id="threatCount">12</div>
-                    <div class="stat-label">Últimas 24h</div>
+
+                    <!-- Alertas Recentes -->
+                    <div class="table-container">
+                        <h3>Alertas Recentes de Segurança</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Tipo</th>
+                                    <th>Severidade</th>
+                                    <th>Descrição</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alertsTable">
+                                <!-- Alertas serão preenchidos via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">IPs Analisados</h3>
-                        <div class="card-icon">
-                            <i class="fas fa-globe"></i>
+                <!-- Página de Clientes (Admin Only) -->
+                <div id="clientsPage" class="page">
+                    <div class="table-container">
+                        <div class="card-header">
+                            <h3>Gestão de Clientes</h3>
+                            <button class="btn btn-success" id="addClientBtn">
+                                <i class="fas fa-plus"></i>
+                                Novo Cliente
+                            </button>
                         </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Plano</th>
+                                    <th>Status</th>
+                                    <th>Última Atividade</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientsTable">
+                                <!-- Clientes serão preenchidos via JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="stat-number" id="ipCount">1,247</div>
-                    <div class="stat-label">Total este mês</div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Sistema 2FA</h3>
-                        <div class="card-icon">
-                            <i class="fas fa-lock"></i>
+                <!-- Página de Relatórios (Admin Only) -->
+                <div id="reportsPage" class="page">
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Clientes Ativos</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number" id="activeClients">8</div>
+                            <div class="stat-label">Total de clientes</div>
                         </div>
-                    </div>
-                    <div class="stat-number">Ativo</div>
-                    <div class="stat-label">Protegido</div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">ML Insights</h3>
-                        <div class="card-icon">
-                            <i class="fas fa-brain"></i>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Faturamento Mensal</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number">R$ 5.247</div>
+                            <div class="stat-label">Receita recorrente</div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Ameaças Bloqueadas</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number">1.284</div>
+                            <div class="stat-label">Este mês</div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Uptime</h3>
+                                <div class="card-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                            </div>
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Disponibilidade</div>
                         </div>
                     </div>
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Precisão</div>
                 </div>
             </div>
-
-            <!-- 2FA Section -->
-            <section class="twofa-section">
-                <div class="twofa-header">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h2>Autenticação em Dois Fatores (2FA)</h2>
-                </div>
-                <div class="twofa-content">
-                    <div class="qrcode-container">
-                        <div class="qrcode-placeholder">
-                            <i class="fas fa-qrcode"></i>
-                        </div>
-                        <p>Escaneie com Google Authenticator</p>
-                        <button class="btn btn-primary" id="generateQRBtn">
-                            <i class="fas fa-sync"></i>
-                            Gerar Novo QR Code
-                        </button>
-                    </div>
-                    <div class="backup-codes">
-                        <h4>Códigos de Backup</h4>
-                        <div class="codes-grid">
-                            <div class="code-item">A1B2C3</div>
-                            <div class="code-item">D4E5F6</div>
-                            <div class="code-item">G7H8I9</div>
-                            <div class="code-item">J0K1L2</div>
-                            <div class="code-item">M3N4O5</div>
-                            <div class="code-item">P6Q7R8</div>
-                        </div>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-download"></i>
-                            Baixar Códigos
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Security Alerts -->
-            <section class="alerts-section">
-                <h3>Alertas de Segurança</h3>
-                <div class="alert-list">
-                    <div class="alert-item">
-                        <div class="alert-icon info">
-                            <i class="fas fa-info-circle"></i>
-                        </div>
-                        <div>
-                            <strong>Login detectado</strong>
-                            <p>Novo dispositivo conectado - São Paulo, BR</p>
-                        </div>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-icon warning">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div>
-                            <strong>IP suspeito</strong>
-                            <p>Atividade incomum detectada - IP: 192.168.1.100</p>
-                        </div>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-icon critical">
-                            <i class="fas fa-skull-crossbones"></i>
-                        </div>
-                        <div>
-                            <strong>Ameaça crítica</strong>
-                            <p>Malware detectado e neutralizado</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
     </div>
 
     <script>
-        // Sistema de Atualização
-        document.getElementById('refreshBtn').addEventListener('click', function() {
-            const btn = this;
-            const originalHTML = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Atualizando...';
-            btn.disabled = true;
-            
-            // Simular atualização de dados
-            setTimeout(() => {
-                // Atualizar contadores
-                document.getElementById('threatCount').textContent = 
-                    Math.floor(Math.random() * 5) + 10;
-                document.getElementById('ipCount').textContent = 
-                    (Math.floor(Math.random() * 100) + 1200).toLocaleString();
-                
-                btn.innerHTML = originalHTML;
-                btn.disabled = false;
-                
-                // Notificação de sucesso
-                showNotification('Dados atualizados com sucesso!', 'success');
-            }, 2000);
-        });
+        // Sistema de Gerenciamento de Estado
+        class SecureShieldApp {
+            constructor() {
+                this.currentUser = null;
+                this.clients = JSON.parse(localStorage.getItem('secureShieldClients')) || [];
+                this.alerts = JSON.parse(localStorage.getItem('secureShieldAlerts')) || [];
+                this.init();
+            }
 
-        // Gerar QR Code
-        document.getElementById('generateQRBtn').addEventListener('click', function() {
-            const btn = this;
-            const originalHTML = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.disabled = false;
-                showNotification('Novo QR Code gerado! Escaneie novamente.', 'info');
-            }, 1500);
-        });
+            init() {
+                this.checkAuth();
+                this.bindEvents();
+                this.loadDemoData();
+            }
 
-        // Sistema de Notificações
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 15px 20px;
-                background: ${type === 'success' ? '#4cc9f0' : '#4361ee'};
-                color: white;
-                border-radius: 8px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                z-index: 10000;
-                animation: slideIn 0.3s ease;
-            `;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
+            checkAuth() {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user) {
+                    this.currentUser = user;
+                    this.showDashboard();
+                } else {
+                    this.showLogin();
+                }
+            }
+
+            showLogin() {
+                document.getElementById('loginPage').style.display = 'flex';
+                document.getElementById('appContainer').style.display = 'none';
+            }
+
+            showDashboard() {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('appContainer').style.display = 'flex';
+                this.updateUI();
+            }
+
+            bindEvents() {
+                // Login
+                document.getElementById('loginForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleLogin();
+                });
+
+                // Demos
+                document.getElementById('showAdminDemo').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.demoLogin('admin');
+                });
+
+                document.getElementById('showClientDemo').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.demoLogin('client');
+                });
+
+                // Logout
+                document.getElementById('logoutBtn').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.logout();
+                });
+
+                // Navegação
+                document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (!e.target.getAttribute('data-page')) return;
+                        
+                        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+                        e.target.classList.add('active');
+                        
+                        this.showPage(e.target.getAttribute('data-page'));
+                    });
+                });
+
+                // Refresh
+                document.getElementById('refreshBtn').addEventListener('click', () => {
+                    this.refreshData();
+                });
+            }
+
+            handleLogin() {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Simulação de login - Em produção, isso seria uma API
+                if (email && password) {
+                    this.currentUser = {
+                        id: Date.now(),
+                        email: email,
+                        name: email.split('@')[0],
+                        role: 'client',
+                        company: 'Empresa Teste'
+                    };
+                    
+                    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                    this.showDashboard();
+                    this.showNotification('Login realizado com sucesso!', 'success');
+                }
+            }
+
+            demoLogin(role) {
+                this.currentUser = {
+                    id: 1,
+                    email: role === 'admin' ? 'admin@secureshield.com' : 'cliente@empresa.com',
+                    name: role === 'admin' ? 'Administrador' : 'Cliente Demo',
+                    role: role,
+                    company: role === 'admin' ? 'SecureShield Analytics' : 'Empresa Cliente'
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                this.showDashboard();
+                this.showNotification(`Demo ${role} carregado com sucesso!`, 'success');
+            }
+
+            logout() {
+                this.currentUser = null;
+                localStorage.removeItem('currentUser');
+                this.showLogin();
+                this.showNotification('Logout realizado com sucesso!', 'info');
+            }
+
+            updateUI() {
+                if (!this.currentUser) return;
+
+                // Atualizar informações do usuário
+                document.getElementById('currentUserName').textContent = this.currentUser.name;
+                document.getElementById('currentUserRole').textContent = 
+                    this.currentUser.role === 'admin' ? 'Administrador' : 'Cliente';
+
+                // Mostrar/ocultar funcionalidades de admin
+                const adminElements = document.querySelectorAll('.admin-only');
+                adminElements.forEach(el => {
+                    el.style.display = this.currentUser.role === 'admin' ? 'block' : 'none';
+                });
+
+                // Carregar dados específicos da página
+                this.loadPageData();
+            }
+
+            showPage(pageName) {
+                // Oculta todas as páginas
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+
+                // Mostra a página solicitada
+                const pageElement = document.getElementById(pageName + 'Page');
+                if (pageElement) {
+                    pageElement.classList.add('active');
+                    document.getElementById('pageTitle').textContent = 
+                        this.getPageTitle(pageName);
+                    
+                    // Carrega dados específicos da página
+                    this.loadPageData(pageName);
+                }
+            }
+
+            getPageTitle(pageName) {
+                const titles = {
+                    dashboard: 'Dashboard de Segurança',
+                    security: 'Configurações de Segurança',
+                    clients: 'Gestão de Clientes',
+                    reports: 'Relatórios Empresariais',
+                    settings: 'Configurações do Sistema'
+                };
+                return titles[pageName] || 'SecureShield Analytics';
+            }
+
+            loadPageData(pageName = 'dashboard') {
+                switch(pageName) {
+                    case 'dashboard':
+                        this.loadDashboardData();
+                        break;
+                    case 'clients':
+                        this.loadClientsData();
+                        break;
+                    case 'reports':
+                        this.loadReportsData();
+                        break;
+                }
+            }
+
+            loadDashboardData() {
+                // Simular dados do dashboard
+                const alerts = [
+                    { date: '2024-11-04 10:30', type: 'Login Suspeito', severity: 'Alta', description: 'Tentativa de login de IP desconhecido', status: 'Investigando' },
+                    { date: '2024-11-04 09:15', type: 'Malware', severity: 'Crítica', description: 'Arquivo malicioso detectado', status: 'Neutralizado' },
+                    { date: '2024-11-04 08:45', type: 'Port Scan', severity: 'Média', description: 'Varredura de portas detectada', status: 'Monitorando' }
+                ];
+
+                const tableBody = document.getElementById('alertsTable');
+                tableBody.innerHTML = alerts.map(alert => `
+                    <tr>
+                        <td>${alert.date}</td>
+                        <td>${alert.type}</td>
+                        <td><span class="badge ${this.getSeverityClass(alert.severity)}">${alert.severity}</span></td>
+                        <td>${alert.description}</td>
+                        <td>${alert.status}</td>
+                    </tr>
+                `).join('');
+            }
+
+            loadClientsData() {
+                const clients = [
+                    { name: 'TechSolutions LTDA', plan: 'Business', status: 'Ativo', lastActivity: '2024-11-04 09:30' },
+                    { name: 'Startup Inovadora', plan: 'Startup', status: 'Ativo', lastActivity: '2024-11-03 16:45' },
+                    { name: 'Corporação Global', plan: 'Enterprise', status: 'Ativo', lastActivity: '2024-11-04 08:15' },
+                    { name: 'Loja Online', plan: 'Startup', status: 'Suspenso', lastActivity: '2024-10-28 14:20' }
+                ];
+
+                const tableBody = document.getElementById('clientsTable');
+                tableBody.innerHTML = clients.map(client => `
+                    <tr>
+                        <td>${client.name}</td>
+                        <td>${client.plan}</td>
+                        <td><span class="badge ${client.status === 'Ativo' ? 'badge-success' : 'badge-warning'}">${client.status}</span></td>
+                        <td>${client.lastActivity}</td>
+                        <td>
+                            <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            loadReportsData() {
+                // Dados já estão no HTML estático
+            }
+
+            getSeverityClass(severity) {
+                const classes = {
+                    'Baixa': 'badge-success',
+                    'Média': 'badge-warning',
+                    'Alta': 'badge-warning',
+                    'Crítica': 'badge-danger'
+                };
+                return classes[severity] || 'badge-success';
+            }
+
+            refreshData() {
+                const btn = document.getElementById('refreshBtn');
+                const originalHTML = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Atualizando...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    // Atualizar contadores
+                    document.getElementById('threatCount').textContent = 
+                        Math.floor(Math.random() * 5) + 10;
+                    document.getElementById('ipCount').textContent = 
+                        (Math.floor(Math.random() * 100) + 1200).toLocaleString();
+                    
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                    
+                    this.showNotification('Dados atualizados com sucesso!', 'success');
+                    this.loadPageData(); // Recarrega dados da página atual
+                }, 2000);
+            }
+
+            loadDemoData() {
+                // Carregar dados iniciais se não existirem
+                if (this.clients.length === 0) {
+                    this.clients = [
+                        {
+                            id: 1,
+                            name: 'Empresa Demo',
+                            email: 'contato@empresa.com',
+                            plan: 'startup',
+                            status: 'active',
+                            createdAt: new Date().toISOString()
+                        }
+                    ];
+                    localStorage.setItem('secureShieldClients', JSON.stringify(this.clients));
+                }
+
+                if (this.alerts.length === 0) {
+                    this.alerts = [
+                        {
+                            id: 1,
+                            type: 'login_attempt',
+                            severity: 'medium',
+                            description: 'Tentativa de login incomum',
+                            timestamp: new Date().toISOString(),
+                            status: 'resolved'
+                        }
+                    ];
+                    localStorage.setItem('secureShieldAlerts', JSON.stringify(this.alerts));
+                }
+            }
+
+            showNotification(message, type = 'info') {
+                // Sistema de notificação simples
+                alert(`[${type.toUpperCase()}] ${message}`);
+            }
         }
 
-        // Adicionar animações CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        console.log('🚀 Dashboard Ultra carregado com sucesso!');
-        console.log('🔐 Sistema 2FA pronto para uso');
-        console.log('🤖 Machine Learning ativo');
+        // Inicializar a aplicação quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', () => {
+            window.secureShieldApp = new SecureShieldApp();
+        });
     </script>
 </body>
 </html>
