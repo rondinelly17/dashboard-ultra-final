@@ -131,11 +131,22 @@
             color: white;
         }
 
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
         .login-links {
             margin-top: 20px;
             display: flex;
             gap: 15px;
             justify-content: center;
+            flex-direction: column;
         }
 
         .login-links a {
@@ -365,9 +376,214 @@
             color: white;
         }
 
+        .badge-info {
+            background: var(--info);
+            color: white;
+        }
+
         /* Admin Only */
         .admin-only {
             display: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--darker);
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Forms */
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        /* 2FA Section */
+        .twofa-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .twofa-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .twofa-header i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .twofa-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .qrcode-container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .qrcode-placeholder {
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+        }
+
+        .backup-codes {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .backup-codes h4 {
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .codes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .code-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Configurações */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .settings-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .settings-section {
+            margin-bottom: 25px;
+        }
+
+        .settings-section h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
         }
 
         /* Responsive */
@@ -382,6 +598,19 @@
 
             .dashboard-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .twofa-content {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
             }
         }
     </style>
@@ -413,8 +642,7 @@
             </form>
 
             <div class="login-links">
-                <a href="#" id="showRegister">Criar conta</a>
-                <a href="#" id="showAdminDemo">Demo Admin</a>
+                <a href="#" id="showAdminDemo">Demo Administrador</a>
                 <a href="#" id="showClientDemo">Demo Cliente</a>
             </div>
         </div>
@@ -529,6 +757,61 @@
                     </div>
                 </div>
 
+                <!-- Página de Segurança -->
+                <div id="securityPage" class="page">
+                    <div class="twofa-section">
+                        <div class="twofa-header">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h2>Autenticação em Dois Fatores (2FA)</h2>
+                        </div>
+                        <div class="twofa-content">
+                            <div class="qrcode-container">
+                                <div class="qrcode-placeholder">
+                                    <i class="fas fa-qrcode"></i>
+                                </div>
+                                <p>Escaneie com Google Authenticator</p>
+                                <button class="btn btn-primary" id="generateQRBtn">
+                                    <i class="fas fa-sync"></i>
+                                    Gerar Novo QR Code
+                                </button>
+                            </div>
+                            <div class="backup-codes">
+                                <h4>Códigos de Backup</h4>
+                                <div class="codes-grid">
+                                    <div class="code-item">A1B2C3</div>
+                                    <div class="code-item">D4E5F6</div>
+                                    <div class="code-item">G7H8I9</div>
+                                    <div class="code-item">J0K1L2</div>
+                                    <div class="code-item">M3N4O5</div>
+                                    <div class="code-item">P6Q7R8</div>
+                                </div>
+                                <button class="btn btn-primary" id="downloadCodesBtn">
+                                    <i class="fas fa-download"></i>
+                                    Baixar Códigos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <h3>Histórico de Segurança</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Evento</th>
+                                    <th>IP</th>
+                                    <th>Localização</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="securityHistoryTable">
+                                <!-- Histórico será preenchido via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <!-- Página de Clientes (Admin Only) -->
                 <div id="clientsPage" class="page">
                     <div class="table-container">
@@ -603,9 +886,198 @@
                             <div class="stat-label">Disponibilidade</div>
                         </div>
                     </div>
+
+                    <div class="table-container">
+                        <h3>Relatório de Performance</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Métrica</th>
+                                    <th>Valor</th>
+                                    <th>Tendência</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Taxa de Detecção</td>
+                                    <td>98.7%</td>
+                                    <td><span class="badge badge-success">+2.3%</span></td>
+                                    <td><span class="badge badge-success">Excelente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Tempo de Resposta</td>
+                                    <td>124ms</td>
+                                    <td><span class="badge badge-success">-15ms</span></td>
+                                    <td><span class="badge badge-success">Ótimo</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Falsos Positivos</td>
+                                    <td>2.1%</td>
+                                    <td><span class="badge badge-warning">+0.3%</span></td>
+                                    <td><span class="badge badge-warning">Atenção</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Página de Configurações -->
+                <div id="settingsPage" class="page">
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <div class="settings-section">
+                                <h3>Configurações Gerais</h3>
+                                <div class="form-group">
+                                    <label for="companyName">Nome da Empresa</label>
+                                    <input type="text" id="companyName" class="form-control" value="SecureShield Analytics">
+                                </div>
+                                <div class="form-group">
+                                    <label for="timezone">Fuso Horário</label>
+                                    <select id="timezone" class="form-control">
+                                        <option value="-3">Brasília (GMT-3)</option>
+                                        <option value="-4">Manaus (GMT-4)</option>
+                                        <option value="-5">Acre (GMT-5)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>Notificações</h3>
+                                <div class="form-group" style="display: flex; justify-content: between; align-items: center;">
+                                    <label for="emailNotifications">Notificações por Email</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="emailNotifications" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group" style="display: flex; justify-content: between; align-items: center;">
+                                    <label for="pushNotifications">Notificações Push</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="pushNotifications" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card">
+                            <div class="settings-section">
+                                <h3>Segurança</h3>
+                                <div class="form-group" style="display: flex; justify-content: between; align-items: center;">
+                                    <label for="twoFactorAuth">Autenticação em Dois Fatores</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="twoFactorAuth" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group" style="display: flex; justify-content: between; align-items: center;">
+                                    <label for="sessionTimeout">Timeout de Sessão (30min)</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="sessionTimeout" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group" style="display: flex; justify-content: between; align-items: center;">
+                                    <label for="ipWhitelist">Whitelist de IPs</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="ipWhitelist">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>Backup</h3>
+                                <div class="form-group">
+                                    <label for="backupFrequency">Frequência de Backup</label>
+                                    <select id="backupFrequency" class="form-control">
+                                        <option value="daily">Diário</option>
+                                        <option value="weekly">Semanal</option>
+                                        <option value="monthly">Mensal</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" id="backupNowBtn">
+                                    <i class="fas fa-download"></i>
+                                    Backup Agora
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="card-header">
+                            <h3>Logs do Sistema</h3>
+                            <button class="btn btn-warning" id="clearLogsBtn">
+                                <i class="fas fa-trash"></i>
+                                Limpar Logs
+                            </button>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Data/Hora</th>
+                                    <th>Tipo</th>
+                                    <th>Mensagem</th>
+                                    <th>Usuário</th>
+                                </tr>
+                            </thead>
+                            <tbody id="systemLogsTable">
+                                <!-- Logs serão preenchidos via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Modal para Novo Cliente -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="clientModalTitle">Novo Cliente</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="clientForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientName">Nome da Empresa</label>
+                        <input type="text" id="clientName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientEmail">E-mail</label>
+                        <input type="email" id="clientEmail" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientPlan">Plano</label>
+                        <select id="clientPlan" class="form-control" required>
+                            <option value="startup">Startup (R$ 297/mês)</option>
+                            <option value="business">Business (R$ 897/mês)</option>
+                            <option value="enterprise">Enterprise (R$ 1.997/mês)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientStatus">Status</label>
+                        <select id="clientStatus" class="form-control" required>
+                            <option value="active">Ativo</option>
+                            <option value="suspended">Suspenso</option>
+                            <option value="trial">Teste</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="clientNotes">Observações</label>
+                    <textarea id="clientNotes" class="form-control" rows="3"></textarea>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" class="btn btn-danger close-modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Salvar Cliente</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -615,6 +1087,8 @@
                 this.currentUser = null;
                 this.clients = JSON.parse(localStorage.getItem('secureShieldClients')) || [];
                 this.alerts = JSON.parse(localStorage.getItem('secureShieldAlerts')) || [];
+                this.settings = JSON.parse(localStorage.getItem('secureShieldSettings')) || this.getDefaultSettings();
+                this.systemLogs = JSON.parse(localStorage.getItem('secureShieldLogs')) || [];
                 this.init();
             }
 
@@ -622,6 +1096,41 @@
                 this.checkAuth();
                 this.bindEvents();
                 this.loadDemoData();
+                this.setupModals();
+            }
+
+            getDefaultSettings() {
+                return {
+                    companyName: 'SecureShield Analytics',
+                    timezone: '-3',
+                    emailNotifications: true,
+                    pushNotifications: true,
+                    twoFactorAuth: true,
+                    sessionTimeout: true,
+                    ipWhitelist: false,
+                    backupFrequency: 'daily'
+                };
+            }
+
+            setupModals() {
+                // Fechar modal ao clicar no X ou fora
+                document.querySelectorAll('.close-modal').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        this.closeModal('clientModal');
+                    });
+                });
+
+                document.getElementById('clientModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'clientModal') {
+                        this.closeModal('clientModal');
+                    }
+                });
+
+                // Formulário de cliente
+                document.getElementById('clientForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.saveClient();
+                });
             }
 
             checkAuth() {
@@ -673,12 +1182,13 @@
                 document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
                     link.addEventListener('click', (e) => {
                         e.preventDefault();
-                        if (!e.target.getAttribute('data-page')) return;
+                        const pageName = e.target.getAttribute('data-page');
+                        if (!pageName) return;
                         
                         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
                         e.target.classList.add('active');
                         
-                        this.showPage(e.target.getAttribute('data-page'));
+                        this.showPage(pageName);
                     });
                 });
 
@@ -686,13 +1196,42 @@
                 document.getElementById('refreshBtn').addEventListener('click', () => {
                     this.refreshData();
                 });
+
+                // Gestão de Clientes
+                document.getElementById('addClientBtn').addEventListener('click', () => {
+                    this.openClientModal();
+                });
+
+                // Segurança
+                document.getElementById('generateQRBtn').addEventListener('click', () => {
+                    this.generateQRCode();
+                });
+
+                document.getElementById('downloadCodesBtn').addEventListener('click', () => {
+                    this.downloadBackupCodes();
+                });
+
+                // Configurações
+                document.getElementById('backupNowBtn').addEventListener('click', () => {
+                    this.createBackup();
+                });
+
+                document.getElementById('clearLogsBtn').addEventListener('click', () => {
+                    this.clearSystemLogs();
+                });
+
+                // Salvar configurações quando alteradas
+                document.querySelectorAll('#settingsPage input, #settingsPage select').forEach(element => {
+                    element.addEventListener('change', () => {
+                        this.saveSettings();
+                    });
+                });
             }
 
             handleLogin() {
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
 
-                // Simulação de login - Em produção, isso seria uma API
                 if (email && password) {
                     this.currentUser = {
                         id: Date.now(),
@@ -705,6 +1244,7 @@
                     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
                     this.showDashboard();
                     this.showNotification('Login realizado com sucesso!', 'success');
+                    this.addSystemLog('login', `Usuário ${email} fez login`);
                 }
             }
 
@@ -720,9 +1260,11 @@
                 localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
                 this.showDashboard();
                 this.showNotification(`Demo ${role} carregado com sucesso!`, 'success');
+                this.addSystemLog('login', `Demo ${role} iniciado`);
             }
 
             logout() {
+                this.addSystemLog('logout', `Usuário ${this.currentUser.email} fez logout`);
                 this.currentUser = null;
                 localStorage.removeItem('currentUser');
                 this.showLogin();
@@ -732,35 +1274,28 @@
             updateUI() {
                 if (!this.currentUser) return;
 
-                // Atualizar informações do usuário
                 document.getElementById('currentUserName').textContent = this.currentUser.name;
                 document.getElementById('currentUserRole').textContent = 
                     this.currentUser.role === 'admin' ? 'Administrador' : 'Cliente';
 
-                // Mostrar/ocultar funcionalidades de admin
                 const adminElements = document.querySelectorAll('.admin-only');
                 adminElements.forEach(el => {
                     el.style.display = this.currentUser.role === 'admin' ? 'block' : 'none';
                 });
 
-                // Carregar dados específicos da página
                 this.loadPageData();
+                this.loadSettings();
             }
 
             showPage(pageName) {
-                // Oculta todas as páginas
                 document.querySelectorAll('.page').forEach(page => {
                     page.classList.remove('active');
                 });
 
-                // Mostra a página solicitada
                 const pageElement = document.getElementById(pageName + 'Page');
                 if (pageElement) {
                     pageElement.classList.add('active');
-                    document.getElementById('pageTitle').textContent = 
-                        this.getPageTitle(pageName);
-                    
-                    // Carrega dados específicos da página
+                    document.getElementById('pageTitle').textContent = this.getPageTitle(pageName);
                     this.loadPageData(pageName);
                 }
             }
@@ -781,21 +1316,27 @@
                     case 'dashboard':
                         this.loadDashboardData();
                         break;
+                    case 'security':
+                        this.loadSecurityData();
+                        break;
                     case 'clients':
                         this.loadClientsData();
                         break;
                     case 'reports':
                         this.loadReportsData();
                         break;
+                    case 'settings':
+                        this.loadSettingsData();
+                        break;
                 }
             }
 
             loadDashboardData() {
-                // Simular dados do dashboard
                 const alerts = [
                     { date: '2024-11-04 10:30', type: 'Login Suspeito', severity: 'Alta', description: 'Tentativa de login de IP desconhecido', status: 'Investigando' },
                     { date: '2024-11-04 09:15', type: 'Malware', severity: 'Crítica', description: 'Arquivo malicioso detectado', status: 'Neutralizado' },
-                    { date: '2024-11-04 08:45', type: 'Port Scan', severity: 'Média', description: 'Varredura de portas detectada', status: 'Monitorando' }
+                    { date: '2024-11-04 08:45', type: 'Port Scan', severity: 'Média', description: 'Varredura de portas detectada', status: 'Monitorando' },
+                    { date: '2024-11-03 16:20', type: 'DDoS', severity: 'Alta', description: 'Ataque de negação de serviço detectado', status: 'Mitigado' }
                 ];
 
                 const tableBody = document.getElementById('alertsTable');
@@ -810,24 +1351,52 @@
                 `).join('');
             }
 
+            loadSecurityData() {
+                const securityHistory = [
+                    { date: '2024-11-04 10:30', event: 'Login Bem-sucedido', ip: '189.45.210.100', location: 'São Paulo, BR', status: 'Sucesso' },
+                    { date: '2024-11-04 09:15', event: 'Tentativa de Login', ip: '192.168.1.100', location: 'Rede Interna', status: 'Falha' },
+                    { date: '2024-11-04 08:45', event: '2FA Ativado', ip: '189.45.210.100', location: 'São Paulo, BR', status: 'Sucesso' },
+                    { date: '2024-11-03 16:20', event: 'Senha Alterada', ip: '189.45.210.100', location: 'São Paulo, BR', status: 'Sucesso' }
+                ];
+
+                const tableBody = document.getElementById('securityHistoryTable');
+                tableBody.innerHTML = securityHistory.map(record => `
+                    <tr>
+                        <td>${record.date}</td>
+                        <td>${record.event}</td>
+                        <td>${record.ip}</td>
+                        <td>${record.location}</td>
+                        <td><span class="badge badge-success">${record.status}</span></td>
+                    </tr>
+                `).join('');
+            }
+
             loadClientsData() {
-                const clients = [
-                    { name: 'TechSolutions LTDA', plan: 'Business', status: 'Ativo', lastActivity: '2024-11-04 09:30' },
-                    { name: 'Startup Inovadora', plan: 'Startup', status: 'Ativo', lastActivity: '2024-11-03 16:45' },
-                    { name: 'Corporação Global', plan: 'Enterprise', status: 'Ativo', lastActivity: '2024-11-04 08:15' },
-                    { name: 'Loja Online', plan: 'Startup', status: 'Suspenso', lastActivity: '2024-10-28 14:20' }
+                const clients = this.clients.length > 0 ? this.clients : [
+                    { id: 1, name: 'TechSolutions LTDA', email: 'contato@techsolutions.com', plan: 'business', status: 'active', lastActivity: '2024-11-04 09:30', notes: 'Cliente corporativo' },
+                    { id: 2, name: 'Startup Inovadora', email: 'admin@startupinovadora.com', plan: 'startup', status: 'active', lastActivity: '2024-11-03 16:45', notes: 'Plano inicial' },
+                    { id: 3, name: 'Corporação Global', email: 'security@corporacaoglobal.com', plan: 'enterprise', status: 'active', lastActivity: '2024-11-04 08:15', notes: 'Contrato anual' },
+                    { id: 4, name: 'Loja Online', email: 'suporte@lojaonline.com', plan: 'startup', status: 'suspended', lastActivity: '2024-10-28 14:20', notes: 'Pagamento pendente' }
                 ];
 
                 const tableBody = document.getElementById('clientsTable');
                 tableBody.innerHTML = clients.map(client => `
                     <tr>
-                        <td>${client.name}</td>
-                        <td>${client.plan}</td>
-                        <td><span class="badge ${client.status === 'Ativo' ? 'badge-success' : 'badge-warning'}">${client.status}</span></td>
+                        <td>
+                            <div><strong>${client.name}</strong></div>
+                            <div style="font-size: 0.8rem; color: var(--gray);">${client.email}</div>
+                        </td>
+                        <td>
+                            <span class="badge ${this.getPlanBadgeClass(client.plan)}">${this.getPlanName(client.plan)}</span>
+                        </td>
+                        <td><span class="badge ${client.status === 'active' ? 'badge-success' : 'badge-warning'}">${client.status === 'active' ? 'Ativo' : 'Suspenso'}</span></td>
                         <td>${client.lastActivity}</td>
                         <td>
-                            <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8rem;">
+                            <button class="btn btn-primary btn-sm" onclick="secureShieldApp.editClient(${client.id})">
                                 <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="secureShieldApp.deleteClient(${client.id})">
+                                <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
@@ -835,7 +1404,43 @@
             }
 
             loadReportsData() {
-                // Dados já estão no HTML estático
+                document.getElementById('activeClients').textContent = this.clients.filter(c => c.status === 'active').length;
+            }
+
+            loadSettingsData() {
+                this.loadSystemLogs();
+            }
+
+            loadSystemLogs() {
+                const logs = this.systemLogs.length > 0 ? this.systemLogs : [
+                    { timestamp: '2024-11-04 10:30:00', type: 'info', message: 'Sistema iniciado', user: 'system' },
+                    { timestamp: '2024-11-04 10:25:00', type: 'warning', message: 'Backup automático executado', user: 'system' },
+                    { timestamp: '2024-11-04 09:15:00', type: 'info', message: 'Usuário admin fez login', user: 'admin@secureshield.com' },
+                    { timestamp: '2024-11-03 16:45:00', type: 'error', message: 'Falha na conexão com API externa', user: 'system' }
+                ];
+
+                const tableBody = document.getElementById('systemLogsTable');
+                tableBody.innerHTML = logs.map(log => `
+                    <tr>
+                        <td>${log.timestamp}</td>
+                        <td><span class="badge ${this.getLogTypeClass(log.type)}">${log.type}</span></td>
+                        <td>${log.message}</td>
+                        <td>${log.user}</td>
+                    </tr>
+                `).join('');
+            }
+
+            loadSettings() {
+                if (!this.settings) return;
+                
+                document.getElementById('companyName').value = this.settings.companyName;
+                document.getElementById('timezone').value = this.settings.timezone;
+                document.getElementById('emailNotifications').checked = this.settings.emailNotifications;
+                document.getElementById('pushNotifications').checked = this.settings.pushNotifications;
+                document.getElementById('twoFactorAuth').checked = this.settings.twoFactorAuth;
+                document.getElementById('sessionTimeout').checked = this.settings.sessionTimeout;
+                document.getElementById('ipWhitelist').checked = this.settings.ipWhitelist;
+                document.getElementById('backupFrequency').value = this.settings.backupFrequency;
             }
 
             getSeverityClass(severity) {
@@ -848,6 +1453,201 @@
                 return classes[severity] || 'badge-success';
             }
 
+            getPlanBadgeClass(plan) {
+                const classes = {
+                    'startup': 'badge-info',
+                    'business': 'badge-primary',
+                    'enterprise': 'badge-success'
+                };
+                return classes[plan] || 'badge-info';
+            }
+
+            getPlanName(plan) {
+                const names = {
+                    'startup': 'Startup',
+                    'business': 'Business',
+                    'enterprise': 'Enterprise'
+                };
+                return names[plan] || plan;
+            }
+
+            getLogTypeClass(type) {
+                const classes = {
+                    'info': 'badge-info',
+                    'warning': 'badge-warning',
+                    'error': 'badge-danger',
+                    'success': 'badge-success'
+                };
+                return classes[type] || 'badge-info';
+            }
+
+            // Modal Functions
+            openClientModal(clientId = null) {
+                const modal = document.getElementById('clientModal');
+                const title = document.getElementById('clientModalTitle');
+                const form = document.getElementById('clientForm');
+                
+                if (clientId) {
+                    // Editar cliente existente
+                    title.textContent = 'Editar Cliente';
+                    const client = this.clients.find(c => c.id === clientId);
+                    if (client) {
+                        document.getElementById('clientName').value = client.name;
+                        document.getElementById('clientEmail').value = client.email;
+                        document.getElementById('clientPlan').value = client.plan;
+                        document.getElementById('clientStatus').value = client.status;
+                        document.getElementById('clientNotes').value = client.notes || '';
+                        form.dataset.editId = clientId;
+                    }
+                } else {
+                    // Novo cliente
+                    title.textContent = 'Novo Cliente';
+                    form.reset();
+                    delete form.dataset.editId;
+                }
+                
+                modal.style.display = 'flex';
+            }
+
+            closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+
+            saveClient() {
+                const form = document.getElementById('clientForm');
+                const clientData = {
+                    name: document.getElementById('clientName').value,
+                    email: document.getElementById('clientEmail').value,
+                    plan: document.getElementById('clientPlan').value,
+                    status: document.getElementById('clientStatus').value,
+                    notes: document.getElementById('clientNotes').value,
+                    lastActivity: new Date().toISOString().split('T')[0] + ' ' + new Date().toLocaleTimeString('pt-BR', {hour12: false}).substring(0, 5)
+                };
+
+                if (form.dataset.editId) {
+                    // Editar cliente existente
+                    const clientId = parseInt(form.dataset.editId);
+                    const index = this.clients.findIndex(c => c.id === clientId);
+                    if (index !== -1) {
+                        this.clients[index] = { ...this.clients[index], ...clientData };
+                        this.showNotification('Cliente atualizado com sucesso!', 'success');
+                        this.addSystemLog('client_updated', `Cliente ${clientData.name} atualizado`);
+                    }
+                } else {
+                    // Novo cliente
+                    clientData.id = Date.now();
+                    this.clients.push(clientData);
+                    this.showNotification('Cliente adicionado com sucesso!', 'success');
+                    this.addSystemLog('client_created', `Novo cliente: ${clientData.name}`);
+                }
+
+                localStorage.setItem('secureShieldClients', JSON.stringify(this.clients));
+                this.closeModal('clientModal');
+                this.loadClientsData();
+                this.loadReportsData();
+            }
+
+            editClient(clientId) {
+                this.openClientModal(clientId);
+            }
+
+            deleteClient(clientId) {
+                if (confirm('Tem certeza que deseja excluir este cliente?')) {
+                    this.clients = this.clients.filter(c => c.id !== clientId);
+                    localStorage.setItem('secureShieldClients', JSON.stringify(this.clients));
+                    this.showNotification('Cliente excluído com sucesso!', 'success');
+                    this.addSystemLog('client_deleted', `Cliente ID ${clientId} excluído`);
+                    this.loadClientsData();
+                    this.loadReportsData();
+                }
+            }
+
+            // Security Functions
+            generateQRCode() {
+                const btn = document.getElementById('generateQRBtn');
+                const originalHTML = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                    this.showNotification('Novo QR Code gerado! Escaneie com seu app autenticador.', 'success');
+                    this.addSystemLog('2fa_qr_generated', 'Novo QR Code 2FA gerado');
+                }, 1500);
+            }
+
+            downloadBackupCodes() {
+                this.showNotification('Códigos de backup baixados com sucesso!', 'success');
+                this.addSystemLog('2fa_codes_downloaded', 'Códigos de backup 2FA baixados');
+            }
+
+            // Settings Functions
+            saveSettings() {
+                this.settings = {
+                    companyName: document.getElementById('companyName').value,
+                    timezone: document.getElementById('timezone').value,
+                    emailNotifications: document.getElementById('emailNotifications').checked,
+                    pushNotifications: document.getElementById('pushNotifications').checked,
+                    twoFactorAuth: document.getElementById('twoFactorAuth').checked,
+                    sessionTimeout: document.getElementById('sessionTimeout').checked,
+                    ipWhitelist: document.getElementById('ipWhitelist').checked,
+                    backupFrequency: document.getElementById('backupFrequency').value
+                };
+
+                localStorage.setItem('secureShieldSettings', JSON.stringify(this.settings));
+                this.showNotification('Configurações salvas com sucesso!', 'success');
+                this.addSystemLog('settings_updated', 'Configurações do sistema atualizadas');
+            }
+
+            createBackup() {
+                const btn = document.getElementById('backupNowBtn');
+                const originalHTML = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Backup...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                    this.showNotification('Backup criado com sucesso!', 'success');
+                    this.addSystemLog('backup_created', 'Backup do sistema realizado');
+                }, 2000);
+            }
+
+            clearSystemLogs() {
+                if (confirm('Tem certeza que deseja limpar todos os logs do sistema?')) {
+                    this.systemLogs = [];
+                    localStorage.setItem('secureShieldLogs', JSON.stringify(this.systemLogs));
+                    this.loadSystemLogs();
+                    this.showNotification('Logs do sistema limpos com sucesso!', 'success');
+                    this.addSystemLog('logs_cleared', 'Logs do sistema limpos');
+                }
+            }
+
+            addSystemLog(type, message) {
+                const log = {
+                    timestamp: new Date().toLocaleString('pt-BR'),
+                    type: type,
+                    message: message,
+                    user: this.currentUser ? this.currentUser.email : 'system'
+                };
+                
+                this.systemLogs.unshift(log);
+                // Manter apenas os 50 logs mais recentes
+                if (this.systemLogs.length > 50) {
+                    this.systemLogs = this.systemLogs.slice(0, 50);
+                }
+                
+                localStorage.setItem('secureShieldLogs', JSON.stringify(this.systemLogs));
+                
+                // Atualizar tabela se estiver na página de configurações
+                if (document.getElementById('settingsPage').classList.contains('active')) {
+                    this.loadSystemLogs();
+                }
+            }
+
             refreshData() {
                 const btn = document.getElementById('refreshBtn');
                 const originalHTML = btn.innerHTML;
@@ -856,22 +1656,19 @@
                 btn.disabled = true;
                 
                 setTimeout(() => {
-                    // Atualizar contadores
-                    document.getElementById('threatCount').textContent = 
-                        Math.floor(Math.random() * 5) + 10;
-                    document.getElementById('ipCount').textContent = 
-                        (Math.floor(Math.random() * 100) + 1200).toLocaleString();
+                    document.getElementById('threatCount').textContent = Math.floor(Math.random() * 5) + 10;
+                    document.getElementById('ipCount').textContent = (Math.floor(Math.random() * 100) + 1200).toLocaleString();
                     
                     btn.innerHTML = originalHTML;
                     btn.disabled = false;
                     
                     this.showNotification('Dados atualizados com sucesso!', 'success');
                     this.loadPageData(); // Recarrega dados da página atual
+                    this.addSystemLog('data_refreshed', 'Dados do dashboard atualizados');
                 }, 2000);
             }
 
             loadDemoData() {
-                // Carregar dados iniciais se não existirem
                 if (this.clients.length === 0) {
                     this.clients = [
                         {
@@ -880,7 +1677,8 @@
                             email: 'contato@empresa.com',
                             plan: 'startup',
                             status: 'active',
-                            createdAt: new Date().toISOString()
+                            lastActivity: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR', {hour12: false}).substring(0, 5),
+                            notes: 'Cliente de demonstração'
                         }
                     ];
                     localStorage.setItem('secureShieldClients', JSON.stringify(this.clients));
@@ -902,12 +1700,50 @@
             }
 
             showNotification(message, type = 'info') {
-                // Sistema de notificação simples
-                alert(`[${type.toUpperCase()}] ${message}`);
+                // Sistema de notificação simples - pode ser melhorado com toast notifications
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 20px;
+                    background: ${type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--primary)'};
+                    color: white;
+                    border-radius: 8px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    z-index: 10000;
+                    animation: slideIn 0.3s ease;
+                `;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
             }
         }
 
-        // Inicializar a aplicação quando o DOM estiver carregado
+        // Adicionar animações CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+            .badge-primary {
+                background: var(--primary);
+                color: white;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Inicializar a aplicação
         document.addEventListener('DOMContentLoaded', () => {
             window.secureShieldApp = new SecureShieldApp();
         });
